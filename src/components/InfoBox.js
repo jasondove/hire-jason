@@ -1,38 +1,86 @@
 import React from 'react';
+import {CSSTransition} from 'react-transition-group';
 
 export default function InfoBox(props) {
     const handleClick = (value) => {
         props.changeView(value);
     };
 
-    return (
-        <div className="info-box">
+    const links = [
+        <span>
+            Are you hiring an {' '}
             <a href="#"
-                className="info-box__header"
-                onClick={() => handleClick(props.currentView === 0 ? props.data.view : 0)}
-            >{props.data.title}</a>
-            <p>
-                {props.data.text}
-                {props.currentView === props.data.view &&
-                    props.data.textExtended}
-            </p>
-            {props.currentView === props.data.view &&
-                <ul>
-                    {props.data.list.map((text, index) => {
-                        return <li key={index}>{text}</li>;
-                    })}
-                </ul>
-            }
-            {props.currentView !== props.data.view &&
-                <a href="#"
-                    className="link"
-                    onClick={() => handleClick(props.data.view)}
-                >Learn More</a>}
-            {props.currentView === props.data.view &&
-                <a href="#"
-                    className="link"
-                    onClick={() => handleClick(0)}
-                >&larr; Back</a>}
-        </div>
+                className="link"
+                onClick={() => handleClick(1)}
+            >
+                Engineering Manager
+            </a>
+            {' '}or a {' '}
+            <a href="#"
+                className="link"
+                onClick={() => handleClick(2)}
+            >
+                Front-End Developer
+            </a>
+            ?
+        </span>,
+        <span>
+            Are you hiring a {' '}
+            <a href="#"
+                className="link"
+                onClick={() => handleClick(2)}
+            >
+                Front-End Developer
+            </a>
+            {' '}or are you {' '}
+            <a href="#"
+                className="link"
+                onClick={() => handleClick(0)}
+            >
+                undecided
+            </a>
+            ?
+        </span>,
+        <span>
+            Are you hiring a {' '}
+            <a href="#"
+                className="link"
+                onClick={() => handleClick(1)}
+            >
+                Engineering Manager
+            </a>
+            {' '}or are you {' '}
+            <a href="#"
+                className="link"
+                onClick={() => handleClick(0)}
+            >
+                undecided
+            </a>
+            ?
+        </span>,
+
+    ];
+
+    return (
+        <CSSTransition
+            in={props.transitioning}
+            timeout={300}
+            classNames="fade"
+        >
+            <div className="info-box">
+                <div className="info-box__header">{props.data.title}</div>
+                <p>
+                    {props.data.text}
+                </p>
+                {props.data.list &&
+                    <ul>
+                        {props.data.list.map((text, index) => {
+                            return <li key={index}>{text}</li>;
+                        })}
+                    </ul>
+                }
+                {links[props.currentView]}
+            </div>
+        </CSSTransition>
     );
 }
