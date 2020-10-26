@@ -1,5 +1,6 @@
 import React from 'react';
 import {CSSTransition} from 'react-transition-group';
+import ImgEffect from "./ImgEffect";
 
 export default function ImgBox(props) {
     const imgs = ['me0.png', 'me1.png', 'me2.png'];
@@ -15,6 +16,7 @@ export default function ImgBox(props) {
     return (
         <div className="img-container">
             <div className="img-container__inner">
+                <ImgEffect />
                 <CSSTransition
                     in={props.transitioning}
                     timeout={300}
