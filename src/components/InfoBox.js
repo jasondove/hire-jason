@@ -2,8 +2,9 @@ import React from 'react';
 import {CSSTransition} from 'react-transition-group';
 
 export default function InfoBox(props) {
-    const handleClick = (value) => {
-        props.changeView(value);
+    const handleClick = (e) => {
+        e.preventDefault();
+        props.changeView(e.currentTarget.getAttribute('value'));
     };
 
     const links = [
@@ -11,14 +12,16 @@ export default function InfoBox(props) {
             Are you hiring an {' '}
             <a href="#"
                 className="link"
-                onClick={() => handleClick(1)}
+                value="1"
+                onClick={handleClick}
             >
                 Engineering Manager
             </a>
             {' '}or a {' '}
             <a href="#"
                 className="link"
-                onClick={() => handleClick(2)}
+                value="2"
+                onClick={handleClick}
             >
                 Front-End Developer
             </a>
@@ -28,14 +31,16 @@ export default function InfoBox(props) {
             Are you hiring a {' '}
             <a href="#"
                 className="link"
-                onClick={() => handleClick(2)}
+                value="2"
+                onClick={handleClick}
             >
                 Front-End Developer
             </a>
             {' '}or are you {' '}
             <a href="#"
                 className="link"
-                onClick={() => handleClick(0)}
+                value="0"
+                onClick={handleClick}
             >
                 undecided
             </a>
@@ -45,14 +50,16 @@ export default function InfoBox(props) {
             Are you hiring a {' '}
             <a href="#"
                 className="link"
-                onClick={() => handleClick(1)}
+                value="1"
+                onClick={handleClick}
             >
                 Engineering Manager
             </a>
             {' '}or are you {' '}
             <a href="#"
                 className="link"
-                onClick={() => handleClick(0)}
+                value="0"
+                onClick={handleClick}
             >
                 undecided
             </a>

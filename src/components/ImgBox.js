@@ -16,7 +16,7 @@ export default function ImgBox(props) {
     return (
         <div className="img-container">
             <div className="img-container__inner">
-                <ImgEffect />
+                <ImgEffect imgEffect={props.imgEffect} />
                 <CSSTransition
                     in={props.transitioning}
                     timeout={300}
